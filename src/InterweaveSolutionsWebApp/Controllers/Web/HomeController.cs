@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using InterweaveSolutionsWebApp.Models;
 
-namespace InterweaveSolutionsWebApp.Controllers
+namespace InterweaveSolutionsWebApp.Controllers.Web
 {
     public class HomeController : Controller
     {
@@ -13,17 +15,15 @@ namespace InterweaveSolutionsWebApp.Controllers
             return View();
         }
 
-        public IActionResult About()
+        [Authorize(Roles = "Administrator")]
+        public IActionResult TestAdminPage()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
-        public IActionResult Contact()
+        [Authorize(Roles = "SuccessAmbassador")]
+        public IActionResult TestSuccessAmbassadorPage()
         {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
         }
 
